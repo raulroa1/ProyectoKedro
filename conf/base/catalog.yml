@@ -1,0 +1,75 @@
+matriz_compra:
+  type: pandas.CSVDataset
+  filepath: data/01_raw/matriz-compra.csv
+  load_args:
+    sep: ","
+  save_args:
+    index: False
+
+matriz_venta:
+  type: pandas.CSVDataset
+  filepath: data/01_raw/matriz-venta.csv
+  load_args:
+    sep: ","
+  save_args:
+    index: False
+
+df_compra_weighted:
+  type: pandas.CSVDataset
+  filepath: data/02_intermediate/df_compra_weighted.csv
+  load_args:
+    sep: ","
+    encoding: "latin1"
+  save_args:
+    index: False
+    encoding: "latin1"
+
+df_venta_weighted:
+  type: pandas.CSVDataset
+  filepath: data/02_intermediate/df_venta_weighted.csv
+  load_args:
+    sep: ","
+    encoding: "latin1"
+  save_args:
+    index: False
+    encoding: "latin1"
+
+df_compra_categorized:
+  type: pandas.CSVDataset
+  filepath: data/03_primary/df_compra_categorized.csv
+  load_args:
+    sep: ","
+    encoding: "latin1"
+  save_args:
+    index: False
+    encoding: "latin1"
+
+df_venta_categorized:
+  type: pandas.CSVDataset
+  filepath: data/03_primary/df_venta_categorized.csv
+  load_args:
+    sep: ","
+    encoding: "latin1"
+  save_args:
+    index: False
+    encoding: "latin1"
+
+compra_summary:
+  type: pandas.CSVDataset
+  filepath: data/03_primary/compra_summary.csv
+  load_args:
+    sep: ","
+    encoding: "latin1"
+  save_args:
+    index: False
+    encoding: "latin1"
+
+venta_summary:
+  type: pandas.CSVDataset
+  filepath: data/03_primary/venta_summary.csv
+  load_args:
+    sep: ","
+    encoding: "latin1"
+  save_args:
+    index: False
+    encoding: "latin1"
