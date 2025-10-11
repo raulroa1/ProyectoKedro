@@ -177,3 +177,9 @@ __pycache__/
 
 # Configuración local (no compartir credenciales)
 conf/local/
+
+git add conf/
+git add src/
+git add notebooks/
+git add catalog.yml  
+git add README.md    

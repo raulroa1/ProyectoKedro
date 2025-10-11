@@ -29,7 +29,13 @@ def categorize_weight_node(df: pd.DataFrame) -> pd.DataFrame:
 
 
 def summarize_categories(df: pd.DataFrame, name: str) -> pd.DataFrame:
-    """Cuenta las categorías de peso."""
+    """
+    Agrupa y resume categorías principales del dataset.
+    Args:
+        df: DataFrame de entrada con columnas categóricas.
+    Returns:
+        DataFrame con conteos por categoría.
+    """
     summary = df['Weight_Category'].value_counts().reset_index()
     summary.columns = ['Category', 'Count']
     summary['Source'] = name
