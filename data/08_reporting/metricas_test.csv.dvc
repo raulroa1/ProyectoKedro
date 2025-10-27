@@ -1,0 +1,5 @@
+outs:
+- md5: df731ba35ca13d25acc05791cfe8767a
+  size: 307
+  hash: md5
+  path: metricas_test.csv
