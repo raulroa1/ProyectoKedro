@@ -1,31 +1,33 @@
 ##########################
 # KEDRO PROJECT
 
-# ignore all local configuration
+# Ignore all local configuration
 conf/local/**
 !conf/local/.gitkeep
 
-# ignore potentially sensitive credentials files
+# Ignore potentially sensitive credentials files
 conf/**/*credentials*
 
-# ignore everything in the following folders
+# Ignore everything in data, excepto métricas finales
 data/**
+!data/08_reporting/
+!data/08_reporting/metricas_test_clf.csv
+!data/08_reporting/metricas_test.csv
+!data/08_reporting/metricas_test_clf.csv.dvc
+!data/08_reporting/metricas_test.csv.dvc
 
-# except their sub-folders
-!data/**/
-
-# also keep all .gitkeep files
+# Also keep all .gitkeep files
 !.gitkeep
 
-# also keep the example dataset
+# Also keep example datasets
 !data/01_raw/companies.csv
 !data/01_raw/reviews.csv
 !data/01_raw/shuttles.xlsx
 
-# ignore kedro-viz metadata
+# Ignore kedro-viz metadata
 .viz
 
-# ignore file based logs
+# Ignore file based logs
 *.log
 
 ##########################
@@ -48,7 +50,7 @@ out/
 .*.swo
 .*.swp
 
-# emacs
+# Emacs
 *~
 \#*\#
 /.emacs.desktop
@@ -62,7 +64,6 @@ atlassian-ide-plugin.xml
 *.so
 
 ### Python template
-# Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
 *$py.class
@@ -87,8 +88,6 @@ wheels/
 MANIFEST
 
 # PyInstaller
-#  Usually these files are written by a python script from a template
-#  before PyInstaller builds the exe, so as to inject date/other infos into it.
 *.manifest
 *.spec
 
@@ -133,10 +132,10 @@ target/
 # Jupyter Notebook
 .ipynb_checkpoints
 
-# pyenv
+# Pyenv
 .python-version
 
-# celery beat schedule file
+# Celery beat schedule file
 celerybeat-schedule
 
 # SageMath parsed files
@@ -178,8 +177,8 @@ __pycache__/
 # Configuración local (no compartir credenciales)
 conf/local/
 
-git add conf/
-git add src/
-git add notebooks/
-git add catalog.yml  
-git add README.md    
+# Excepto métricas finales y sus .dvc
+!data/08_reporting/metricas_test_clf.csv
+!data/08_reporting/metricas_test.csv
+!data/08_reporting/metricas_test_clf.csv.dvc
+!data/08_reporting/metricas_test.csv.dvc
