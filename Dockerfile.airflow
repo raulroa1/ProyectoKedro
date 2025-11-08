@@ -1,0 +1,46 @@
+# Imagen base oficial de Airflow con Python 3.10
+FROM apache/airflow:3.1.2rc1-python3.10
+
+# Cambiamos a root solo para instalar dependencias del sistema necesarias
+USER root
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    build-essential \
+    curl \
+    git \
+    && apt-get clean && rm -rf /var/lib/apt/lists/*
+
+# Volvemos al usuario airflow antes de usar pip
+USER airflow
+
+# Copiamos los archivos de dependencias
+COPY --chown=airflow:root requirements.txt /opt/airflow/requirements.txt
+COPY --chown=airflow:root constraints.txt /opt/airflow/constraints.txt
+
+# Instalamos las dependencias de Python bajo el usuario airflow
+RUN pip install --no-cache-dir --upgrade pip setuptools wheel \
+    && pip install --no-cache-dir -r /opt/airflow/requirements.txt \
+       --constraint /opt/airflow/constraints.txt \
+       --use-deprecated=legacy-resolver
+
+# Copiamos tu proyecto Kedro dentro del contenedor
+COPY --chown=airflow:root . /opt/airflow/analisis/
+WORKDIR /opt/airflow/analisis
+
+#Por los packages uy grandes demasiadas dependencias
+USER airflow
+RUN pip install --no-cache-dir pip==23.3.2 setuptools wheel
+# Instalamos el proyecto Kedro (modo editable)
+USER airflow
+RUN pip install --no-cache-dir -e . --constraint /opt/airflow/constraints.txt
+
+# Creamos carpetas necesarias
+RUN mkdir -p /opt/airflow/dags /opt/airflow/logs /opt/airflow/plugins /opt/airflow/data
+
+# Copiamos DAGs
+COPY --chown=airflow:root dags/ /opt/airflow/dags/
+
+# Variables de entorno
+ENV PYTHONPATH="${PYTHONPATH}:/opt/airflow/analisis"
+ENV AIRFLOW__CORE__DAGS_FOLDER="/opt/airflow/dags"
+ENV AIRFLOW__CORE__PLUGINS_FOLDER="/opt/airflow/plugins"
+ENV AIRFLOW__LOGGING__LOGGING_LEVEL="INFO"

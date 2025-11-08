@@ -1,72 +1,10 @@
-##########################
-# KEDRO PROJECT
-
-# Ignore all local configuration
-conf/local/**
-!conf/local/.gitkeep
-
-# Ignore potentially sensitive credentials files
-conf/**/*credentials*
-
-# Ignore everything in data, excepto métricas finales
-data/**
-!data/08_reporting/
-!data/08_reporting/metricas_test_clf.csv
-!data/08_reporting/metricas_test.csv
-!data/08_reporting/metricas_test_clf.csv.dvc
-!data/08_reporting/metricas_test.csv.dvc
-
-# Also keep all .gitkeep files
-!.gitkeep
-
-# Also keep example datasets
-!data/01_raw/companies.csv
-!data/01_raw/reviews.csv
-!data/01_raw/shuttles.xlsx
-
-# Ignore kedro-viz metadata
-.viz
-
-# Ignore file based logs
-*.log
-
-##########################
-# Common files
-
-# IntelliJ
-.idea/
-*.iml
-out/
-.idea_modules/
-
-### macOS
-*.DS_Store
-.AppleDouble
-.LSOverride
-.Trashes
-
-# Vim
-*~
-.*.swo
-.*.swp
-
-# Emacs
-*~
-\#*\#
-/.emacs.desktop
-/.emacs.desktop.lock
-*.elc
-
-# JIRA plugin
-atlassian-ide-plugin.xml
-
-# C extensions
-*.so
-
-### Python template
+# Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
 *$py.class
+
+# C extensions
+*.so
 
 # Distribution / packaging
 .Python
@@ -88,6 +26,8 @@ wheels/
 MANIFEST
 
 # PyInstaller
+#  Usually these files are written by a python script from a template
+#  before PyInstaller builds the exe, so as to inject date/other infos into it.
 *.manifest
 *.spec
 
@@ -98,6 +38,7 @@ pip-delete-this-directory.txt
 # Unit test / coverage reports
 htmlcov/
 .tox/
+.nox/
 .coverage
 .coverage.*
 .cache
@@ -105,6 +46,7 @@ nosetests.xml
 coverage.xml
 *.cover
 .hypothesis/
+.pytest_cache/
 
 # Translations
 *.mo
@@ -112,9 +54,8 @@ coverage.xml
 
 # Django stuff:
 *.log
-.static_storage/
-.media/
 local_settings.py
+db.sqlite3
 
 # Flask stuff:
 instance/
@@ -132,10 +73,14 @@ target/
 # Jupyter Notebook
 .ipynb_checkpoints
 
-# Pyenv
+# IPython
+profile_default/
+ipython_config.py
+
+# pyenv
 .python-version
 
-# Celery beat schedule file
+# celery beat schedule file
 celerybeat-schedule
 
 # SageMath parsed files
@@ -150,35 +95,123 @@ ENV/
 env.bak/
 venv.bak/
 
+# Spyder project settings
+.spyderproject
+.spyproject
+
+# Rope project settings
+.ropeproject
+
 # mkdocs documentation
 /site
 
 # mypy
 .mypy_cache/
+.dmypy.json
+dmypy.json
 
-# mlflow local runs
-mlruns/*
+# Pyre type checker
+.pyre/
 
-# Carpetas de Kedro que contienen datos
-data/01_raw/
-data/02_intermediate/
-data/03_primary/
-data/04_feature/
-data/05_model_input/
-data/06_models/
-data/07_model_output/
-data/08_reporting/
+# Kedro specific
+# Data
+data/
+!data/01_raw/
+!data/02_intermediate/
+!data/03_primary/
+!data/04_5_model_input/
+!data/04_reporting/
+!data/05_model_input/
+!data/06_models/
+!data/07_model_output/
+!data/08_reporting/
 
-# Entorno virtual
-.venv/
-__pycache__/
-*.pyc
+# Jupyter Notebook
+.ipynb_checkpoints
 
-# Configuración local (no compartir credenciales)
-conf/local/
+# IPython
+profile_default/
+ipython_config.py
 
-# Excepto métricas finales y sus .dvc
-!data/08_reporting/metricas_test_clf.csv
-!data/08_reporting/metricas_test.csv
-!data/08_reporting/metricas_test_clf.csv.dvc
-!data/08_reporting/metricas_test.csv.dvc
+# pyenv
+.python-version
+
+# pipenv
+#   According to pypa/pipenv#598, it is recommended to include Pipfile.lock in version control.
+#   However, in case of collaboration, if having platform-specific dependencies or dependencies
+#   having no cross-platform support, pipenv may install dependencies that don't work, or not
+#   install all needed dependencies.
+#Pipfile.lock
+
+# PEP 582; used by e.g. github.com/David-OConnor/pyflow
+__pypackages__/
+
+# Celery stuff
+celerybeat-schedule
+celerybeat.pid
+
+# SageMath parsed files
+*.sage.py
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Spyder project settings
+.spyderproject
+.spyproject
+
+# Rope project settings
+.ropeproject
+
+# mkdocs documentation
+/site
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Pyre type checker
+.pyre/
+
+# Airflow specific
+airflow.cfg
+airflow.db
+unittests.cfg
+webserver_config.py
+logs/
+dags/__pycache__/
+plugins/__pycache__/
+
+# Docker
+.dockerignore
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Model files
+*.pkl
+*.joblib
+*.h5
+*.hdf5
+
+# Logs
+*.log
+logs/
+
+# Temporary files
+*.tmp
+*.temp

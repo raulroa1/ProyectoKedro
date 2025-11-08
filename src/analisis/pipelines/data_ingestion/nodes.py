@@ -23,6 +23,8 @@ def factorizacion_dataframe(df: pd.DataFrame) -> pd.DataFrame:
         print(df[['COMUNA', 'COMUNA_ID']].tail())
     else:
         print("\n La columna 'COMUNA' no se encuentra en el DataFrame.")
+    
+    return df
 
 
 
@@ -53,3 +55,24 @@ def graficos_dataframe(df: pd.DataFrame, columna: str = 'CANTIDAD', bins: int = 
 
     # Retornar figura sin mostrarla
     return fig
+
+
+def histograma_producto(df: pd.DataFrame, nombre_producto: str) -> Figure:
+    """
+    Genera un histograma de la columna 'CANTIDAD' solo para un producto específico.
+
+    Args:
+        df (pd.DataFrame): Dataset de ventas.
+        nombre_producto (str): Nombre exacto del producto a filtrar.
+
+    Returns:
+        matplotlib.figure.Figure: Figura del histograma.
+    """
+    # Filtrar solo el producto deseado
+    df_filtrado = df[df["PRODUCTO"] == nombre_producto]
+
+    if df_filtrado.empty:
+        raise ValueError(f"No hay registros para el producto '{nombre_producto}'")
+    
+    # Usamos tu función de histograma
+    return graficos_dataframe(df_filtrado, columna="CANTIDAD", bins=10)

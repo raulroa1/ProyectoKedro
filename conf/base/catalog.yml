@@ -6,67 +6,332 @@ matriz_compra:
   filepath: data/01_raw/matriz-compra.csv
   load_args:
     sep: ","
+    encoding: latin1
   save_args:
     index: False
+    encoding: utf-8
 
 matriz_venta:
   type: pandas.CSVDataset
   filepath: data/01_raw/matriz-venta.csv
   load_args:
     sep: ","
+    encoding: latin1
   save_args:
     index: False
+    encoding: utf-8
+# ------------------------
+# MATRIZ_CLEAN_caracteres
+# ------------------------
+matriz_venta_clean_caracteres:
+  type: pandas.CSVDataset
+  filepath: data/02_intermediate/filtacion_de_datos_venta.csv
+  save_args:
+    index: False
+    encoding: utf-8
+
+matriz_compra_clean_caracteres:
+  type: pandas.CSVDataset
+  filepath: data/02_intermediate/filtacion_de_datos_compra.csv
+  save_args:
+    index: False
+    encoding: utf-8
+
+matriz_venta_limpia:
+  type: pandas.CSVDataset
+  filepath: data/02_intermediate/matriz_venta_limpia.csv
+  save_args:
+    index: False
+    encoding: utf-8
+
+matriz_compra_limpia:
+  type: pandas.CSVDataset
+  filepath: data/02_intermediate/matriz_compra_limpia.csv
+  save_args:
+    index: False
+    encoding: utf-8
+# ------------------------
+# MATRIZ_CLEAN
+# ------------------------
+matriz_venta_clean:
+  type: pandas.CSVDataset
+  filepath: data/02_intermediate/extraer_peso_y_limpiar_productos_venta_node.csv
+  save_args:
+    index: False
+    encoding: utf-8
+
+matriz_compra_clean:
+  type: pandas.CSVDataset
+  filepath: data/02_intermediate/extraer_peso_y_limpiar_productos_compra_node.csv
+  save_args:
+    index: False
+    encoding: utf-8
 
 # ------------------------
-# INTERMEDIATE DATASETS
+# Matriz filtrada
 # ------------------------
-df_compra_weighted:
-  type: pandas.ParquetDataset
-  filepath: data/02_intermediate/df_compra_weighted.parquet
-  load_args: {}
-  save_args: {}
+matriz_venta_filtrada:
+  type: pandas.CSVDataset
+  filepath: data/03_primary/matriz_venta_filtrada.csv
+  save_args:
+    index: False
+    encoding: utf-8
 
-df_venta_weighted:
-  type: pandas.ParquetDataset
-  filepath: data/02_intermediate/df_venta_weighted.parquet
-  load_args: {}
-  save_args: {}
-
-# ------------------------
-# CATEGORIZED DATASETS
-# ------------------------
-df_compra_categorized:
-  type: pandas.ParquetDataset
-  filepath: data/03_primary/df_compra_categorized.parquet
-  load_args: {}
-  save_args: {}
-
-df_venta_categorized:
-  type: pandas.ParquetDataset
-  filepath: data/03_primary/df_venta_categorized.parquet
-  load_args: {}
-  save_args: {}
+matriz_compra_filtrada:
+  type: pandas.CSVDataset
+  filepath: data/03_primary/matriz_compra_filtrada.csv
+  save_args:
+    index: False
+    encoding: utf-8
 
 # ------------------------
-# SUMMARY DATASETS
+# Matriz producto normalizada
 # ------------------------
-compra_summary:
-  type: pandas.ParquetDataset
-  filepath: data/03_primary/compra_summary.parquet
-  load_args: {}
-  save_args: {}
+matriz_venta_normalizada:
+  type: pandas.CSVDataset
+  filepath: data/03_primary/matriz_producto_venta_normalizada.csv
+  save_args:
+    index: False
+    encoding: utf-8
 
-venta_summary:
-  type: pandas.ParquetDataset
-  filepath: data/03_primary/venta_summary.parquet
-  load_args: {}
-  save_args: {}
+matriz_compra_normalizada:
+  type: pandas.CSVDataset
+  filepath: data/03_primary/matriz_producto_compra_normalizada.csv
+  save_args:
+    index: False
+    encoding: utf-8
 
 # ------------------------
-# MEMORY DATASETS (para nodos de visualización)
+# Matriz de datos normalizados
 # ------------------------
-output_mostrar_datos_compra:
-  type: MemoryDataset
+matriz_venta_datos_normalizada:
+  type: pandas.CSVDataset
+  filepath: data/03_primary/matriz_de_datos_venta_normalizada.csv
+  save_args:
+    index: False
+    encoding: utf-8
 
-output_mostrar_datos_venta:
-  type: MemoryDataset
+matriz_compra_datos_normalizada:
+  type: pandas.CSVDataset
+  filepath: data/03_primary/matriz_de_datos_compra_normalizada.csv
+  save_args:
+    index: False
+    encoding: utf-8
+
+# ------------------------
+# Matriz de datos unificada
+# ------------------------
+
+# ------------------------
+# Matriz de datos Ordenada
+# ------------------------
+matriz_de_datos_ordenada:
+  type: pandas.CSVDataset
+  filepath: data/03_primary/matriz_de_datos_ordenada.csv
+  save_args:
+    index: False
+    encoding: utf-8
+
+# ------------------------
+# Matriz de datos por 8 meses de venta y compra
+# ------------------------
+df_venta_8meses:
+  type: pandas.CSVDataset
+  filepath: data/03_primary/df_venta_8meses.csv
+  save_args:
+    index: False
+    encoding: utf-8
+
+df_compra_8meses:
+  type: pandas.CSVDataset
+  filepath: data/03_primary/df_compra_8meses.csv
+  save_args:
+    index: False
+    encoding: utf-8
+
+meses_comunes_8:
+  type: pandas.CSVDataset
+  filepath: data/03_primary/meses_comunes_8.csv
+  save_args:
+    index: False
+    encoding: utf-8
+
+# === DATASETS INTERMEDIOS REGRESION ===
+X_procesada_rg:
+  type: pandas.CSVDataset
+  filepath: data/05_model_input/X_procesada_rg.csv
+  save_args:
+    index: False
+    encoding: utf-8-sig
+
+y_procesada_rg:
+  type: pandas.CSVDataset
+  filepath: data/05_model_input/y_procesada_rg.csv
+  save_args:
+    index: False
+    encoding: utf-8-sig
+
+preprocceso_reg_X:
+  type: pandas.CSVDataset
+  filepath: data/05_model_input/preprocceso_reg_X.csv
+  save_args:
+    index: False
+    encoding: utf-8-sig
+
+preprocceso_reg_y:
+  type: pandas.CSVDataset
+  filepath: data/05_model_input/preprocceso_reg_y.csv
+  save_args:
+    index: False
+    encoding: utf-8-sig
+
+
+X_train_reg:
+  type: pandas.CSVDataset
+  filepath: data/04_5_model_input/X_train_reg.csv
+  save_args:
+    index: False
+    encoding: utf-8
+
+X_test_reg:
+  type: pandas.CSVDataset
+  filepath: data/04_5_model_input/X_test_reg.csv
+  save_args:
+    index: False
+    encoding: utf-8
+
+y_train_reg:
+  type: pandas.CSVDataset
+  filepath: data/04_5_model_input/y_train_reg.csv
+  save_args:
+    index: False
+    encoding: utf-8
+
+y_test_reg:
+  type: pandas.CSVDataset
+  filepath: data/04_5_model_input/y_test_reg.csv
+  save_args:
+    index: False
+    encoding: utf-8
+
+resultados_rg:
+  type: pickle.PickleDataset
+  filepath: data/07_model_output/resultados_rg.pkl
+
+metricas_test:
+  type: pandas.CSVDataset
+  filepath: data/08_reporting/metricas_test.csv
+  save_args:
+    index: False
+    encoding: utf-8
+
+# ==========================================
+# === DATASETS INTERMEDIOS CLASIFICACION ===
+# ==========================================
+
+# --- Datos preparados para clasificación ---
+
+X_procesada_clf:
+  type: pandas.CSVDataset
+  filepath: data/05_model_input/X_procesada_clf.csv
+  save_args:
+    index: False
+    encoding: utf-8-sig
+
+y_procesada_clf:
+  type: pandas.CSVDataset
+  filepath: data/05_model_input/y_procesada_clf.csv
+  save_args:
+    index: False
+    encoding: utf-8-sig
+
+preprocceso_x:
+  type: pandas.CSVDataset
+  filepath: data/05_model_input/preprocceso_x.csv
+  save_args:
+    index: False
+    encoding: utf-8-sig
+
+preprocceso_y:
+  type: pandas.CSVDataset
+  filepath: data/05_model_input/preprocceso_y.csv
+  save_args:
+    index: False
+    encoding: utf-8-sig
+# --- Datos divididos en entrenamiento y prueba ---
+X_train_clf:
+  type: pandas.CSVDataset
+  filepath: data/06_models/X_train_clf.csv
+  save_args:
+    index: False
+    encoding: utf-8-sig
+
+X_test_clf:
+  type: pandas.CSVDataset
+  filepath: data/06_models/X_test_clf.csv
+  save_args:
+    index: False
+    encoding: utf-8-sig
+
+y_train_clf:
+  type: pandas.CSVDataset
+  filepath: data/06_models/y_train_clf.csv
+  save_args:
+    index: False
+    encoding: utf-8-sig
+
+y_test_clf:
+  type: pandas.CSVDataset
+  filepath: data/06_models/y_test_clf.csv
+  save_args:
+    index: False
+    encoding: utf-8-sig
+
+# --- Modelos entrenados ---
+resultados_clf:
+  type: pickle.PickleDataset
+  filepath: data/07_model_output/resultados_clf.pkl
+
+# --- Métricas ---
+metricas_train_clf:
+  type: pandas.CSVDataset
+  filepath: data/08_reporting/metricas_train_clf.csv
+  save_args:
+    index: False
+    encoding: utf-8-sig
+
+metricas_test_clf:
+  type: pandas.CSVDataset
+  filepath: data/08_reporting/metricas_test_clf.csv
+  save_args:
+    index: False
+    encoding: utf-8-sig
+
+# --- Clustering ---
+X_scaled:
+  type: pickle.PickleDataset
+  filepath: data/05_model_input/X_scaled.pkl
+
+X_pca:
+  type: pickle.PickleDataset
+  filepath: data/05_model_input/X_pca.pkl
+
+k_optimo:
+  type: pickle.PickleDataset
+  filepath: data/08_reporting/k_optimo.pkl
+
+cluster_labels:
+  type: pickle.PickleDataset
+  filepath: data/08_reporting/cluster_labels.pkl
+
+silhouette_score:
+  type: pickle.PickleDataset
+  filepath: data/08_reporting/silhouette_score.pkl
+
+cluster_plot:
+  type: kedro_datasets.matplotlib.MatplotlibWriter
+  filepath: data/08_reporting/cluster_plot.png
+  save_args:
+    dpi: 300
+
+

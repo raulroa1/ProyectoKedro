@@ -1,2 +1,17 @@
 compra_name: "Compra"
 venta_name: "Venta"
+
+# conf/base/parameters.yml
+filtrado_peso:
+  ventas:
+    min: 0.085
+    max: 25.0
+  compras:
+    min: 0.01
+    max: 25.0
+
+eda:
+  output_path: data/04_reporting/eda_report
+
+pca_parameters:
+  n_components: 2
